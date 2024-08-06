@@ -1,11 +1,19 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url  = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
+
+
 
 enum Role {//opção dentro dentro de uma lista  //cargo desse usuário
   ADMIN
@@ -20,7 +28,7 @@ model User {
   password_hash String
   role          Role     @default(MEMBER) //por padrão o valor é menbro
   created_at    DateTime  @default(now())
-
+  
 
   @@map("users") //trocar o nome da tabela para users
 }

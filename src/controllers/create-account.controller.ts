@@ -47,7 +47,7 @@ import {
         data: {
           name,
           email,
-          password: hashedPassword,
+          password_hash: hashedPassword,
         },
       })
     }
