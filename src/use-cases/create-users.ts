@@ -2,6 +2,9 @@ import { UsersRepository } from 'src/repositories/users-repository'
 import { hash } from 'bcryptjs'
 import { UsersAlreadyExistsError } from 'src/errors/user-already-exists-error'
 import { User } from '@prisma/client'  //tipagem propria do prisma
+import {
+  ConflictException,
+} from '@nestjs/common'
 
 interface CreateAccountUseCaseRequest {
   name: string
@@ -15,7 +18,7 @@ interface CreateAccountUseCaseResponse {
 
 
 
-export class RegisterUseCase {  
+export class CreateAccountUseCase {  
   constructor(private usersRepository: UsersRepository) {}   
 
   async execute({ name, email, password }: CreateAccountUseCaseRequest): Promise<CreateAccountUseCaseResponse> {
@@ -26,7 +29,9 @@ export class RegisterUseCase {
   
 
     if (userWithSameEmail) { 
-      throw new UsersAlreadyExistsError()
+      throw new ConflictException(
+        'User with same e-mail address already exists.',
+      )
     }
 
                      

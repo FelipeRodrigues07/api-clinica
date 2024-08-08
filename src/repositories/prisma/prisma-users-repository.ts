@@ -1,4 +1,4 @@
-import { PrismaService } from 'src/prisma/prisma.service'
+import { PrismaService } from 'src/prisma-lib/prisma.service'
 import { Prisma,  User } from '@prisma/client'
 
 import { UsersRepository } from '../users-repository'
