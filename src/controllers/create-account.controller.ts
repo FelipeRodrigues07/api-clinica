@@ -30,6 +30,7 @@ export class CreateAccountController {
 
     try {
     const CreateAccountUseCase = makeCreateAccountUseCase()
+    
      await CreateAccountUseCase.execute({
       name, 
       email, 
