@@ -23,7 +23,7 @@ describe('Register Use Case', () => {
       password: '123456',
     })
 
-    expect(user.id).toEqual(expect.any(String)) //espera que o id do usuário seja uma string
+    expect(user.id).toEqual(expect.any(String))  //espera que o id do usuário seja uma string
   })
 
   it('should hash user password upon registration', async () => {
