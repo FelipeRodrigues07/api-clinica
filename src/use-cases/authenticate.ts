@@ -1,8 +1,8 @@
 import { UsersRepository } from '@/repositories/users-repository'
 import { JwtService } from '@nestjs/jwt'
-import { User } from '@prisma/client'
 import { compare } from 'bcryptjs'
 import { UnauthorizedException } from '@nestjs/common'
+import { User } from '@prisma/client'
 
 interface AuthenticateUseCaseRequest {
     email: string
@@ -10,7 +10,7 @@ interface AuthenticateUseCaseRequest {
 }
 
 interface AuthenticateUseCaseResponse {
-    access_token: string
+   user: User
 }
 
 export class AuthenticateUseCase {
@@ -33,11 +33,8 @@ export class AuthenticateUseCase {
             throw new UnauthorizedException('User credentials do not match.')
         }
 
-
-        const accessToken = this.jwt.sign({ sub: user.id })
-
         return {
-            access_token: accessToken
+           user
         }
     }
 }
