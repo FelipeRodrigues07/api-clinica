@@ -35,7 +35,6 @@ export class AuthenticateController {
       const  { user } = await authenticateUseCase.execute({
         email,
         password
-
       })
 
       const accessToken = this.jwt.sign({ sub: user.id })
